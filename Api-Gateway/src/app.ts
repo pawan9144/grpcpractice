@@ -1,9 +1,10 @@
-import express from "express";
 import bodyParser from "body-parser";
 import helmet from "helmet";
+import express from "express";
 import cors from "cors";
-// eslint-disable-next-line import/no-unresolved
+
 import { client } from "./utils/user.service";
+import { PORT } from "./Config";
 
 const app = express();
 
@@ -13,16 +14,23 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 
 app.get("/", (req, res) => {
-  client.getAll(null, (err, data) => {
-    if (err) {
+  console.log("get api");
+  client.getAll(
+    {
+      name: "shahsi",
+    },
+    (err, data) => {
+      console.log("error", err);
+      if (err) {
+        return res.json({
+          result: err,
+        });
+      }
       return res.json({
-        result: err,
+        result: data,
       });
     }
-    return res.json({
-      result: data,
-    });
-  });
+  );
 });
 
 app.post("/save", (req, res) => {
@@ -34,7 +42,6 @@ app.post("/save", (req, res) => {
 
   client.insert(newCustomer, (err, data) => {
     if (err) throw err;
-
     console.log("Customer created successfully", data);
     res.redirect("/");
   });
@@ -65,7 +72,6 @@ app.post("/remove", (req, res) => {
   });
 });
 
-const PORT = process.env.PORT || 3000;
 app.listen(PORT, () => {
   console.log("Server running at port %d", PORT);
 });

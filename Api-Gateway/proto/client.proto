@@ -8,7 +8,9 @@ service CustomerService {
     rpc Remove (CustomerRequestId) returns (Empty) {}
 }
 
-message Empty {}
+message Empty {
+    string name = 1;
+}
 
 message Customer {
     string id = 1;
