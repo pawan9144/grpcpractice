@@ -1,5 +1,5 @@
 import ConnectDB from "./Db";
-import { startGrpc } from "./utils/grpc";
+import { startGrpc } from "./utils/testGrpc";
 
 function startServer() {
   ConnectDB()
