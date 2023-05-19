@@ -4,18 +4,16 @@ import express from "express";
 import cors from "cors";
 
 import userRouter from "./Routes/user.routes";
-import { client } from "./utils/user.service";
+// import { client } from "./utils/user.service";
 import { PORT } from "./Config";
 
 const app = express();
 
-// app.use(cors());
-// app.use(helmet());
+app.use(cors());
+app.use(helmet());
 app.use(express.json());
-// app.get("/api/signup", () => {
-//   console.log("in get api");
-// });
-// app.use(bodyParser.urlencoded({ extended: false }));
+app.use(bodyParser.urlencoded({ extended: false }));
+
 app.use("/api", userRouter);
 
 // app.get("/", (req, res) => {

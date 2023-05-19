@@ -22,8 +22,7 @@ import joi from "joi";
 
 const LoginValidation = (req: Request, res: Response, next: NextFunction) => {
   const schema = joi.object({
-    email: joi.string().email().required(),
-    password: joi.string(),
+    emailorphone: joi.string().required(),
   });
   const { error } = schema.validate(req.body);
   if (error) {

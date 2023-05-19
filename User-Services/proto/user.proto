@@ -1,24 +1,12 @@
 syntax = "proto3";
 
+message userRequest {
+    string emailorphone = 1;
+}
+message userResponse {
+  int32 status = 1;
+    string message = 2;
+}
 service CustomerService {
-    rpc GetAll (Empty) returns (Customer) {}
-    rpc Get (CustomerRequestId) returns (Customer) {}
-    rpc Insert (Customer) returns (Customer) {}
-    rpc Update (Customer) returns (Customer) {}
-    rpc Remove (CustomerRequestId) returns (Empty) {}
-}
-
-message Empty {
-    string name = 1;
-}
-
-
-message Customer {
-    string id = 1;
-    string name = 2;
-    int32 age = 3;
-    string address = 4;
-}
-message CustomerRequestId {
-    string id = 1;
+    rpc createUser (userRequest) returns (userResponse) {}
 }

@@ -1,5 +1,6 @@
 import ConnectDB from "./Db";
-import { startGrpc } from "./utils/testGrpc";
+// import { rabbitInstance } from "./utils/rabbitMq";
+import { startGrpc } from "./utils/grpc";
 
 function startServer() {
   ConnectDB()
@@ -12,3 +13,6 @@ function startServer() {
     });
 }
 startServer();
+// const data = { name: "gfdgdfgdf" };
+// Sender(data);
+// rabbitInstance.connect();

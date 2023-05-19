@@ -1,11 +1,11 @@
 syntax = "proto3";
 
 message userRequest {
-    string name = 1;
-    string email = 2;
+    string emailorphone = 1;
 }
 message userResponse {
-    string id = 1;
+    int32 status = 1;
+    string message = 2;
 }
 service CustomerService {
     rpc createUser (userRequest) returns (userResponse) {}
